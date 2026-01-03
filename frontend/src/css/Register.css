@@ -17,7 +17,17 @@
     background-size: cover;
     overflow: hidden;
 }
-
+.r-msg{
+    height: 2vh;
+    width: 90vw;
+    text-wrap: wrap;
+    color:red;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px white;
+    font-family: monospace;
+    font-size: x-large;
+    text-align: center;
+}
 .register-inputs {
     width: 40%;
     height: 40%;

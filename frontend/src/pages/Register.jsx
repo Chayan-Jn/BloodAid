@@ -7,7 +7,7 @@ const Register = ()=>{
     const [password, setPassword] = useState('');
     const [otp,setOtp] = useState('');
     const [askedForOTP,setAskedForOTP] = useState(false);
-    const [message,setMessage] = useState('Register')
+    const [message,setMessage] = useState('')
     const lastOtpTime = useRef(0);
 
     const handleRegister = async (e)=>{
@@ -54,7 +54,8 @@ const Register = ()=>{
 
     return(
         <div className="register-page">
-            <div className="register-heading">{message}</div>
+            <div className="r-msg">{message}</div>
+            <div className="register-heading">Register</div>
             <div className="register-inputs">
                 <div className="input-box">
                     <label htmlFor="email">Email ID</label>

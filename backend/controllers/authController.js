@@ -44,11 +44,11 @@ export const Register = async (req,res)=>{
 
 export const Login = async (req,res)=>{
     try{
-        const {email,password} = req.body;
-        if(!email || !password){
+        const {email,password,otp,loginType} = req.body;
+        if(!email){
             return res.status(400).json({
                 success:false,
-                message:"All fields must be filled ",
+                message:"Email is required ",
             })
         }
         const user = await User.findOne({email:email});
@@ -58,12 +58,39 @@ export const Login = async (req,res)=>{
                 message:"User doesn't exist"
             })
         }
-        const verifyPassword = await bcrypt.compare(password,user.password);
-        if(!verifyPassword){
-            return res.status(401).json({
-                success:false,
-                message:"Invalid Credentials"
+
+        if(loginType === "password"){
+            if(!password){
+                return res.status(400).json({
+                    success:false,
+                    message:"All fields must be filled ",
+                })
+            }
+            const verifyPassword = await bcrypt.compare(password,user.password);
+            if(!verifyPassword){
+                return res.status(401).json({
+                    success:false,
+                    message:"Invalid Credentials"
+                })
+            }
+        }
+        else if(loginType === "otp"){
+            if(!otp){
+                return res.status(400).json({
+                    success:false,
+                    message:"All fields must be filled ",
+                })
+            }
+            const verifiedOTP = await verifyOTP({
+                email:email,
+                otp:otp
             })
+            if(!verifiedOTP){
+                return res.status(401).json({
+                    success:false,
+                    message:"Invalid OTP ",
+                })
+            }
         }
         const token = await jwt.sign(
             {
