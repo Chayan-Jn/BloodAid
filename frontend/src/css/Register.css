@@ -1,0 +1,99 @@
+* {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+.register-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: url('../assets/rgbg.jpeg');
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.register-inputs {
+    width: 40%;
+    height: 40%;
+    background-color: #1c0221d0;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    gap: 5px;
+}
+
+.input-box {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.input-box>label {
+    width: 50%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+
+}
+
+.input-box>input {
+    margin-right: 5px;
+    height: 60%;
+    width: 50%;
+    border-radius: 10px;
+    padding-left: 2%;
+    margin-right: 5%;
+    font-size: large;
+}
+
+.r-buttons {
+    width: 100%;
+    display: flex;
+    height: 15%;
+    justify-content: space-evenly;
+    margin-top: 2%;
+}
+
+.r-buttons>button {
+    all: unset;
+    width: 35%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 125%;
+}
+
+.r-buttons>button:nth-child(1) {
+    background-color: #E9EB87;
+}
+
+.r-buttons>button:hover {
+    cursor: pointer;
+    background-color: rgb(90, 4, 90);
+    color: honeydew;
+}
+
+.register-heading {
+    font-size: 5rem;
+    color: #1C0221;
+    text-shadow: 1px 1px 1px white;
+}
