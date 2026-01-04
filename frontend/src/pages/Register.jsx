@@ -1,6 +1,7 @@
 import { useState,useRef } from "react";
 import '../css/Register.css'
 import { requestOTP } from "../utils/requestOtp";
+import {useNavigate} from 'react-router-dom'
 
 const Register = ()=>{
     const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const Register = ()=>{
     const [askedForOTP,setAskedForOTP] = useState(false);
     const [message,setMessage] = useState('')
     const lastOtpTime = useRef(0);
+    const navigate = useNavigate();
 
     const handleRegister = async (e)=>{
         e.preventDefault();
@@ -36,6 +38,7 @@ const Register = ()=>{
             const data = await res.json();
             if (data.ok) {
                 setMessage("Registered successfully!");
+                navigate('/home')
             } else {
                 setMessage(data.message || "Registration failed");
             }

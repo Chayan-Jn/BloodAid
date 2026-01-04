@@ -1,0 +1,217 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+ 
+  .landing-page{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    overflow: hidden;
+  }
+
+  .landing-hero{
+    height: 80vh;
+    width: 100%;
+    background: url('../assets/home.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .landing-hero > nav{
+    height: 10%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 2%;
+    font-size: x-large;
+  }
+  
+  nav > *{
+    margin-right: 2%;
+    background-color: beige;
+    border-radius: 5px;
+    height: 60%;
+    width: min(100px,10vw);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav > div:hover{
+    background-color: black;
+    color: beige;
+    cursor: pointer;
+  }
+
+  .landing-page-body{
+    height: 60%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero{
+    width: 40%;
+    height: 40%;
+    transform: translateX(20%);
+  }
+  
+  .hero > div{
+    width: 100%;
+    height: 40%;
+    color: white;
+    text-shadow: 2px 2px 2px purple;
+    font-size: min(10vh,10vw);
+    text-wrap: wrap;
+    font-weight: bold;
+    font-family: monospace, Arial, Helvetica, sans-serif;
+  }
+
+  .mission {
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    color: white;
+    text-align: center;
+    padding: 4vh 10vw;
+  }
+  
+  .mission h2 {
+    font-size: 2em;
+    margin-bottom: 1vh;
+    color: #ffcccc;
+  }
+  
+  .mission p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .how-it-works {
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    text-align: center;
+    padding: 5vh 0;
+  }
+  
+  .how-it-works h2 {
+    font-size: 2em;
+    margin-bottom: 2vh;
+    color: #b30000;
+  }
+  
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .footer {
+    background-color: rgba(0,0,0,0.9);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 2vh 0;
+    font-size: 1em;
+  }
+  
+  @media (max-width: 768px) {
+    .landing-hero {
+      height: auto;
+      background-position: top;
+    }
+  
+    nav {
+      justify-content: center;
+      gap: 15%;
+      font-size: large;
+      height: 60px;
+    }
+  
+    nav > * {
+      width: 20%;
+      height: 60%;
+      margin-right: 0;
+    }
+  
+    .landing-page-body {
+      padding: 10vh 0;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .hero {
+      width: 90%;
+      height: auto;
+      transform: none;
+      text-align: center;
+    }
+  
+    .hero > div {
+      font-size: clamp(2rem, 8vw, 4rem);
+      text-shadow: 1px 1px 2px #000;
+    }
+  
+    .mission,
+    .how-it-works,
+    .footer {
+      padding: 5vh 5vw;
+    }
+  
+    .steps {
+      font-size: 1em;
+      gap: 1vh;
+    }
+  
+    .mission p {
+      font-size: 1em;
+    }
+  
+    .how-it-works h2,
+    .mission h2 {
+      font-size: 1.6em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    nav {
+      height: auto;
+      padding: 10px 0;
+      width: 100%;
+    }
+  
+    nav > * {
+      width: 20%;
+      height: 40px;
+      font-size: 1em;
+      margin-right: 2%;
+    }
+  
+    .hero > div {
+      font-size: clamp(1.8rem, 9vw, 3rem);
+    }
+  
+    .mission p {
+      font-size: 0.9em;
+    }
+  
+    .steps div {
+      padding: 0 1rem;
+    }
+  }
+  

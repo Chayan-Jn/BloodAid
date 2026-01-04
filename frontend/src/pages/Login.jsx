@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import { requestOTP } from "../utils/requestOtp";
+import {useNavigate} from 'react-router-dom'
 import '../css/Login.css'
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [message,setMessage] = useState('')
     const lastOtpTime = useRef(0);
+    const navigate = useNavigate();
 
 
     const switchLoginType = async () => {
@@ -57,6 +59,7 @@ const Login = () => {
             })
             const data = await res.json();
             setMessage(data.message);
+            navigate('/home');
             
         }
         catch (err) {
