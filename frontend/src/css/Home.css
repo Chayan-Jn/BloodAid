@@ -1,0 +1,150 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.home-page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-page > nav{
+    display: flex;
+    flex:1;
+    width: 100%;
+    background-color: #DAEFB3;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-icon{
+    width: max(3vh,3vw);
+    height: max(3vh,3vw);
+    max-height: 100%;
+    border-radius: 50%;
+    color:#030101;
+}
+.profile-icon:hover{
+    background-color: white;
+    color: rgba(183, 181, 182, 0.501);
+}
+.logo{
+    margin-left: 2%;
+    height: 50px;
+    width: 50px;
+    background: url('/logo.png');
+    background-size: contain;
+    background-position: center;
+}
+.logo:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.home-page > .main{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex:9;
+    background-color: #EEF4D4;
+    background:url('https://static.wikitide.net/rainworldwiki/9/9f/Survivor_intro_scene_4_%28walking%29.png');
+    background-position: center;
+    background-size:cover;
+}
+
+.row1,.row2{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 5%;
+    flex:5;
+}
+
+.donate, .request{
+    width: 30%;
+    height: 80%;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    gap:10%;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(220, 20, 60, 0.625);
+}
+
+.donate > div , .request > div{
+    width: 100%;
+    flex:8;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size:2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 2px;
+    margin-right: 2px;
+    background-color: rgba(220, 20, 60, 0.699);
+    border:1px solid white;
+    
+}
+.donate > button, .request > button{
+    all:unset;
+    width: 80%;
+    flex:2;
+    background-color: white;
+    border-radius: 25px;
+    margin-bottom: 10%;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    transition: transform 0.5s;
+
+}
+.donate > button:hover, .request > button:hover{
+    color: black;
+    background-color: #DAEFB3;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.donors-in-area,.requests-in-area{
+    width: 30%;
+    height: 80%;
+    border-radius: 25px;
+    display: flex;
+    gap:10%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #daefb3be;
+}
+
+.donors-in-area > div , .requests-in-area > div{
+    width: 100%;
+    flex:8;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size:2rem;
+    color: #1C2826;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.donors-in-area > button , .requests-in-area > button{
+    all:unset;
+    width: 50%;
+    flex:2;
+    margin-bottom: 10%;
+    text-align: center;
+    color:#1C2826;
+    font-size: 2rem;
+}

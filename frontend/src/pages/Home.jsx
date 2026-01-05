@@ -1,8 +1,12 @@
 import { useEffect,useState } from "react";
-
+import '../css/Home.css';
+import { CgProfile } from "react-icons/cg";
 
 const Home = ()=>{
     const [verified,setVerified] = useState(false);
+    const [totalDonors,setTotalDonors] = useState(0);
+    const [totalRequests,setTotalRequests] = useState(0);
+
     useEffect(() => {
         const checkAuth = async () => {
           try {
@@ -15,13 +19,41 @@ const Home = ()=>{
           }
         }
         checkAuth()
-      }, [])
+      }, []);
+    
     return(
         <>
             {verified && 
                 (
-                    <div>
-                        Home
+                    <div className="home-page">
+                        <nav>
+                          <div className="logo"></div>
+                          <div className="profile-icon">
+                            <CgProfile className="profile-icon" />
+                          </div>
+                        </nav>
+                        <div className="main">
+                          <div className="row1">
+                            <div className="donate">
+                              <div>Be a donor</div>
+                              <button className="donate-btn">Donate</button>
+                            </div>
+                            <div className="request">
+                              <div>Need a donor?</div>
+                              <button className="request-btn">Search</button>
+                            </div>
+                          </div>
+                          <div className="row2">
+                            <div className="donors-in-area">
+                              <div>Total donors in your area</div>
+                              <button>{totalDonors}</button>
+                            </div>
+                            <div className="requests-in-area">
+                              <div>Total requests in your area</div>
+                              <button>{totalRequests}</button>
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 )
             }
