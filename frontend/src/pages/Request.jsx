@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import indiaData from '../data/india_states_districts.json'
-import '../css/Donate.css'
+import '../css/Request.css'
 
 const Request = () => {
   const [selectedState, setSelectedState] = useState('')
@@ -41,13 +41,11 @@ const Request = () => {
       const data = await res.json()
 
       if (res.ok && data.donors?.length) {
-        console.log('donors are ',data.donors);
         setDonors(data.donors)
       } else {
         setError(data.message || 'No donors found in this area')
       }
-    } catch (err) {
-      console.log(err)
+    } catch {
       setError('Server error. Please try again later.')
     } finally {
       setLoading(false)
@@ -57,7 +55,6 @@ const Request = () => {
   return (
     <div className="request-page">
       <div className="request-page-heading">Find a Donor</div>
-
       <form onSubmit={handleSubmit}>
         <div className="request-form-item">
           <label htmlFor="state">State</label>
@@ -95,27 +92,28 @@ const Request = () => {
         </div>
 
         <button type="submit" className="request-form-submit-btn" disabled={loading}>
-          {loading ? 'Searching.....' : 'Find Donor'}
+          {loading ? 'Searching...' : 'Find Donor'}
         </button>
       </form>
 
-      {/* Conditinal rendering of results we get */}
       <div className="results-section">
         {error && <p className="error-message">{error}</p>}
-
         {donors.length > 0 && (
           <div className="donor-results">
             <h3>Available Donors</h3>
             <ul>
               {donors.map((donor, index) => (
                 <li key={index}>
-                  <strong>{donor.name || donor.email}</strong>
-                  <strong>{donor.bloodType}  </strong>
-                  <br />
-                  {donor.location.state}, {donor.location.district}
-                  <br />
-                  Contact: {donor.mobile || 'Not provided'}
-                </li>
+                  <div className="donor-name">{donor.name || donor.email || "Unknown"}</div>
+                  <div className="donor-blood">{donor.bloodType}</div>
+                  <div className="donor-location">
+                    {donor.location.state}, {donor.location.district}
+                  </div>
+                  <div className="donor-contact">
+                    Contact: {donor.mobile || 'Not provided'}
+                  </div>
+              </li>
+
               ))}
             </ul>
           </div>

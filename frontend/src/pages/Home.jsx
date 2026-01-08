@@ -5,8 +5,8 @@ import { CgProfile } from "react-icons/cg";
 
 const Home = ()=>{
     const [verified,setVerified] = useState(false);
-    const [totalDonors,setTotalDonors] = useState(0);
-    const [totalRequests,setTotalRequests] = useState(0);
+    const [totalDonors,setTotalDonors] = useState("Complete Your details to get");
+    const [totalRequests,setTotalRequests] = useState("Complete Your details to get");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,7 +20,26 @@ const Home = ()=>{
             console.error("Verification failed", err)
           }
         }
+        const countTotalDonors = async ()=>{
+          try {
+             const res = await fetch("http://localhost:3000/api/total-donors", {
+              method:"GET",
+              headers:{
+                'Content-Type':'application/json'
+              },
+              credentials: "include", 
+            })
+            if (res.ok){
+              const data = await res.json();
+              const count = data.count ?? "Complete your details"
+              setTotalDonors(count);
+            }
+          } catch (err) {
+            console.error("Verification failed", err)
+          }
+        }
         checkAuth()
+        countTotalDonors()
       }, []);
     
     return(
@@ -42,7 +61,7 @@ const Home = ()=>{
                             </div>
                             <div className="request">
                               <div>Need a donor?</div>
-                              <button className="request-btn">Search</button>
+                              <button className="request-btn" onClick={e=>navigate('/request')}>Search</button>
                             </div>
                           </div>
                           <div className="row2">

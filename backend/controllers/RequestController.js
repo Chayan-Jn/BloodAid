@@ -25,10 +25,12 @@ const RequestController = async (req,res)=>{
                     name: 1,
                     bloodType: 1,
                     mobile: 1,
-                    location: 1
+                    location: 1,
+                    email:1
                 }
             }
         ]);
+
         return res.status(200).json({
             success: true,
             message: "Successfully fetched donors",

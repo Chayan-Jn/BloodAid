@@ -1,4 +1,4 @@
-.donate-page {
+.request-page {
   min-height: 100vh;
   width: 100%;
   background: linear-gradient(to bottom right, #EEF4D4, #DAEFB3);
@@ -8,7 +8,7 @@
   padding: 5vh 2vw;
 }
 
-.donate-page-heading {
+.request-page-heading {
   font-size: 2rem;
   font-weight: bold;
   color: white;
@@ -20,7 +20,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
 
-form {
+.request-page form {
   width: 90%;
   max-width: 500px;
   background-color: rgba(255, 255, 255, 0.9);
@@ -32,19 +32,18 @@ form {
   gap: 20px;
 }
 
-.donate-form-item {
+.request-form-item {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.donate-form-item label {
+.request-form-item label {
   font-weight: bold;
   color: #1C2826;
 }
 
-.donate-form-item select,
-.donate-form-item input {
+.request-form-item select {
   padding: 10px;
   border: 2px solid #DAEFB3;
   border-radius: 10px;
@@ -54,13 +53,12 @@ form {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.donate-form-item select:focus,
-.donate-form-item input:focus {
+.request-form-item select:focus {
   border-color: rgba(220, 20, 60, 0.6);
   box-shadow: 0 0 6px rgba(220, 20, 60, 0.4);
 }
 
-.donate-form-submit-btn {
+.request-form-submit-btn {
   all: unset;
   cursor: pointer;
   text-align: center;
@@ -73,30 +71,91 @@ form {
   transition: all 0.3s ease;
 }
 
-.donate-form-submit-btn:hover {
+.request-form-submit-btn:hover {
   background-color: #DAEFB3;
   color: #1C2826;
   transform: scale(1.05);
 }
 
+.results-section {
+  margin-top: 40px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.error-message {
+  color: crimson;
+  text-align: center;
+  font-weight: bold;
+}
+
+.donor-results {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.donor-results h3 {
+  text-align: center;
+  color: #1C2826;
+  margin-bottom: 15px;
+}
+
+.donor-results ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.donor-results li {
+  background-color: #f9fff5;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1.5px solid #DAEFB3;
+  color: #1C2826;
+}
+
 @media (max-width: 600px) {
-  .donate-page-heading {
+  .request-page-heading {
     font-size: 1.5rem;
     padding: 10px 15px;
   }
 
-  form {
+  .request-page form {
     width: 95%;
     padding: 20px;
   }
 
-  .donate-form-item select,
-  .donate-form-item input {
+  .request-form-item select {
     font-size: 0.95rem;
   }
 
-  .donate-form-submit-btn {
+  .request-form-submit-btn {
     font-size: 1rem;
     padding: 10px;
   }
+
+  .donor-results li {
+    font-size: 0.95rem;
+  }
+}
+
+.donor-name {
+  font-weight: 700;
+  color: #1C2826;
+}
+
+.donor-blood {
+  color: rgba(220, 20, 60, 0.8);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.donor-location,
+.donor-contact {
+  font-size: 0.95rem;
+  color: #1C2826;
 }
