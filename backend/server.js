@@ -6,7 +6,8 @@ import connectToDB from "./config/db.js";
 import authRoutes from './routes/authRoutes.js'
 import otpRoutes from './routes/otpRoutes.js'
 import homeRoutes from './routes/homeRoutes.js'
-
+import DonateRoute from './routes/DonorRoute.js'
+import RequestRoute from './routes/RequestRoute.js'
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,8 @@ app.use(express.json());
 app.use('/', authRoutes);
 app.use('/', otpRoutes);
 app.use('/', homeRoutes);
+app.use('/api',DonateRoute);
+app.use('/api',RequestRoute);
 
 const connectToServer = async () => {
     try {

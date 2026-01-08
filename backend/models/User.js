@@ -22,7 +22,6 @@ const Schema = new mongoose.Schema({
     },
     location: {
         district: String,
-        city: String,
         state: String
     },
     gender:{
@@ -30,6 +29,10 @@ const Schema = new mongoose.Schema({
     },
     profileComplete:{ // all the details have been filled
         type:Boolean
+    },
+    available:{
+        type:Boolean,
+        default:false
     },
     donationsDone: { type: Number, default: 0 },
     donationsReceived: { type: Number, default: 0 }

@@ -1,0 +1,144 @@
+.request-page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom right, #EEF4D4, #DAEFB3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 2vw;
+}
+
+.request-page-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(220, 20, 60, 0.8);
+  padding: 15px 25px;
+  border-radius: 25px;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+form {
+  width: 90%;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.request-form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.request-form-item label {
+  font-weight: bold;
+  color: #1C2826;
+}
+
+.request-form-item select {
+  padding: 10px;
+  border: 2px solid #DAEFB3;
+  border-radius: 10px;
+  background-color: #f9fff5;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.request-form-item select:focus {
+  border-color: rgba(220, 20, 60, 0.6);
+  box-shadow: 0 0 6px rgba(220, 20, 60, 0.4);
+}
+
+.request-form-submit-btn {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba(220, 20, 60, 0.8);
+  color: white;
+  padding: 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.request-form-submit-btn:hover {
+  background-color: #DAEFB3;
+  color: #1C2826;
+  transform: scale(1.05);
+}
+
+.results-section {
+  margin-top: 40px;
+  width: 90%;
+  max-width: 600px;
+}
+
+.error-message {
+  color: crimson;
+  text-align: center;
+  font-weight: bold;
+}
+
+.donor-results {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.donor-results h3 {
+  text-align: center;
+  color: #1C2826;
+  margin-bottom: 15px;
+}
+
+.donor-results ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.donor-results li {
+  background-color: #f9fff5;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1.5px solid #DAEFB3;
+  color: #1C2826;
+}
+
+@media (max-width: 600px) {
+  .request-page-heading {
+    font-size: 1.5rem;
+    padding: 10px 15px;
+  }
+
+  form {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .request-form-item select {
+    font-size: 0.95rem;
+  }
+
+  .request-form-submit-btn {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .donor-results li {
+    font-size: 0.95rem;
+  }
+}

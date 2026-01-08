@@ -1,4 +1,5 @@
 import { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../css/Home.css';
 import { CgProfile } from "react-icons/cg";
 
@@ -6,6 +7,7 @@ const Home = ()=>{
     const [verified,setVerified] = useState(false);
     const [totalDonors,setTotalDonors] = useState(0);
     const [totalRequests,setTotalRequests] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -36,7 +38,7 @@ const Home = ()=>{
                           <div className="row1">
                             <div className="donate">
                               <div>Be a donor</div>
-                              <button className="donate-btn">Donate</button>
+                              <button className="donate-btn" onClick={e=>navigate('/donate')}>Donate</button>
                             </div>
                             <div className="request">
                               <div>Need a donor?</div>

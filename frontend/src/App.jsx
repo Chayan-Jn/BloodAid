@@ -3,6 +3,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
+import Donate from './pages/Donate'
+import Request from './pages/Request'
 const router = createBrowserRouter([
   {
     path:"/",
@@ -19,6 +21,14 @@ const router = createBrowserRouter([
   {
     path:"/register",
     element:<Register/>
+  },
+  {
+    path:"/donate",
+    element:<Donate/>
+  },
+  {
+    path:"/request",
+    element:<Request/>
   }
 ])
 const App = ()=>{
