@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import indiaData from '../data/india_states_districts.json'
-import '../css/Request.css'
+import '../css/Find.css'
 
-const RequestForm = () => {
+const Request = () => {
   const [selectedState, setSelectedState] = useState('')
   const [selectedDistrict, setSelectedDistrict] = useState('')
   const [districts, setDistricts] = useState([])
   const [bloodGroup, setBloodGroup] = useState('')
-  const [units, setUnits] = useState(1)
+  const [donors, setDonors] = useState([])
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState('')
   const [error, setError] = useState('')
 
   const handleStateChange = (e) => {
@@ -24,16 +23,16 @@ const RequestForm = () => {
     e.preventDefault()
     setLoading(true)
     setError('')
-    setSuccess('')
+    setDonors([])
 
     const requestData = {
-      bloodType: bloodGroup,
-      location: { state: selectedState, district: selectedDistrict },
-      units: units
+      state: selectedState,
+      district: selectedDistrict,
+      bloodType: bloodGroup
     }
 
     try {
-      const res = await fetch('http://localhost:3000/api/make-request', {
+      const res = await fetch('http://localhost:3000/api/find-donor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData),
@@ -41,15 +40,10 @@ const RequestForm = () => {
       })
       const data = await res.json()
 
-      if (res.ok) {
-        setSuccess('Request submitted successfully!')
-        setSelectedState('')
-        setSelectedDistrict('')
-        setDistricts([])
-        setBloodGroup('')
-        setUnits(1)
+      if (res.ok && data.donors?.length) {
+        setDonors(data.donors)
       } else {
-        setError(data.message || 'Failed to submit request')
+        setError(data.message || 'No donors found in this area')
       }
     } catch {
       setError('Server error. Please try again later.')
@@ -59,8 +53,8 @@ const RequestForm = () => {
   }
 
   return (
-    <div className="request-form-page">
-      <div className="request-form-heading">Make a Blood Request</div>
+    <div className="request-page">
+      <div className="request-page-heading">Find a Donor</div>
       <form onSubmit={handleSubmit}>
         <div className="request-form-item">
           <label htmlFor="state">State</label>
@@ -74,17 +68,10 @@ const RequestForm = () => {
 
         <div className="request-form-item">
           <label htmlFor="district">District</label>
-          <select
-            name="district"
-            id="district"
-            value={selectedDistrict}
-            disabled={!districts.length}
-            onChange={e => setSelectedDistrict(e.target.value)}
-            required
-          >
+          <select name="district" id="district" disabled={!districts.length} onChange={e => setSelectedDistrict(e.target.value)} value={selectedDistrict} required>
             <option value="">Select District</option>
-            {districts.map((d, idx) => (
-              <option key={idx} value={d}>{d}</option>
+            {districts.map((d, index) => (
+              <option key={index} value={d}>{d}</option>
             ))}
           </select>
         </div>
@@ -104,27 +91,37 @@ const RequestForm = () => {
           </select>
         </div>
 
-        <div className="request-form-item">
-          <label htmlFor="units">Units Needed</label>
-          <input
-            type="number"
-            min="1"
-            max="10"
-            value={units}
-            onChange={e => setUnits(parseInt(e.target.value))}
-            required
-          />
-        </div>
-
         <button type="submit" className="request-form-submit-btn" disabled={loading}>
-          {loading ? 'Submitting...' : 'Submit Request'}
+          {loading ? 'Searching...' : 'Find Donor'}
         </button>
-
-        {success && <p className="success-message">{success}</p>}
-        {error && <p className="error-message">{error}</p>}
       </form>
+
+      <div className="results-section">
+        {error && <p className="error-message">{error}</p>}
+        {donors.length > 0 && (
+          <div className="donor-results">
+            <h3>Available Donors</h3>
+            <ul>
+              {donors.map((donor, index) => (
+                <li key={index}>
+                  <div className="donor-name">{donor.name || donor.email || "Unknown"}</div>
+                  <div className="donor-blood">{donor.bloodType}</div>
+                  <div className="donor-location">
+                    {donor.location.state}, {donor.location.district}
+                  </div>
+                  <div className="donor-contact">
+                    Contact: {donor.mobile || 'Not provided'}
+                  </div>
+              </li>
+
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="request-blood">You can make a Request from your profile</div>
     </div>
   )
 }
 
-export default RequestForm
+export default Request

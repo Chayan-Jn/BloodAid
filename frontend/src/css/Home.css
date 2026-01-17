@@ -18,6 +18,7 @@
     background-color: #DAEFB3;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 .profile-icon{

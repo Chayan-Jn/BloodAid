@@ -1,0 +1,146 @@
+.profile-popup-card {
+  position: absolute;
+  top: 70px;
+  right: 15px;
+  width: 340px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  padding: 20px;
+  z-index: 100;
+  font-family: 'Segoe UI', sans-serif;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.popup-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: #1C2826;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+
+.close-btn:hover { color: red; }
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #333;
+  padding: 8px 0;
+}
+
+.icon { color: #DA4167; font-size: 1.2rem; }
+
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.request-btn {
+  background-color: #DAEFB3;
+  color: #1C2826;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.request-btn:hover {
+  background-color: #c5e294;
+  transform: scale(1.03);
+}
+
+.update-btn {
+  background-color: #FFC107;
+  color: #1C2826;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.update-btn:hover {
+  background-color: #e6b800;
+  transform: scale(1.03);
+}
+
+.your-requests-btn {
+  background-color: #9FD3C7;
+  color: #1C2826;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.your-requests-btn:hover {
+  background-color: #82c3b0;
+  transform: scale(1.03);
+}
+
+.logout-btn {
+  background-color: #F56565;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #e53e3e;
+  transform: scale(1.03);
+}
+
+.icon-small { font-size: 0.9rem; }

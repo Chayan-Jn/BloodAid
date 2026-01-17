@@ -121,7 +121,7 @@ export const Login = async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV == "production",
-            maxAge: 60 * 60 * 1000, // 1h
+            maxAge: 60 * 60 * 1000 * 3, // 3h
             sameSite: "strict"
         })
         return res.status(200).json({
@@ -138,7 +138,27 @@ export const Login = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Server Error occured while Logging in",
-            error: err
+        })
+    }
+}
+
+export const Logout = async (req,res)=>{
+    try{
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict"
+        });
+      
+        return res.status(200).json({
+            success: true,
+            message: "Logged out successfully"
+        });
+    }
+    catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Server Error occured while Logging out",
         })
     }
 }

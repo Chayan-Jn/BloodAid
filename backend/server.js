@@ -8,6 +8,7 @@ import otpRoutes from './routes/otpRoutes.js'
 import homeRoutes from './routes/homeRoutes.js'
 import DonateRoute from './routes/DonorRoute.js'
 import RequestRoute from './routes/RequestRoute.js'
+import updateRoutes from './routes/updateRoutes.js'
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +26,7 @@ app.use('/', otpRoutes);
 app.use('/', homeRoutes);
 app.use('/api',DonateRoute);
 app.use('/api',RequestRoute);
+app.use('/api',updateRoutes)
 
 const connectToServer = async () => {
     try {

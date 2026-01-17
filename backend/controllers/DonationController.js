@@ -39,7 +39,7 @@ const DonateController = async (req, res) => {
 export const countDonorsInArea = async (req,res)=>{
     try{
         const user = await User.findOne({_id:req.user.userId});
-        const {district,state} = user.location;
+        const {district,state} = user.location ?? {};
         if(!user || !state || !district){
             return res.status(400).json({
                 success:false,

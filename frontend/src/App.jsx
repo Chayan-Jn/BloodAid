@@ -4,7 +4,11 @@ import Register from './pages/Register'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
 import Donate from './pages/Donate'
+import Find from './pages/Find'
 import Request from './pages/Request'
+import Update from './pages/Update'
+import MyRequests from './pages/MyRequests'
+
 const router = createBrowserRouter([
   {
     path:"/",
@@ -27,8 +31,20 @@ const router = createBrowserRouter([
     element:<Donate/>
   },
   {
+    path:"/find",
+    element:<Find/>
+  },
+  {
     path:"/request",
     element:<Request/>
+  },
+  {
+    path:"/profile/edit",
+    element:<Update/>
+  },
+  {
+    path:"/my-requests",
+    element:<MyRequests/>
   }
 ])
 const App = ()=>{

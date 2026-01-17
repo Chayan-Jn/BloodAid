@@ -1,0 +1,96 @@
+.update-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom right, #EEF4D4, #DAEFB3);
+  padding: 5vh 2vw;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.update-page h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #1C2826;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.update-form {
+  width: 100%;
+  max-width: 500px;
+  background-color: rgba(255,255,255,0.95);
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #1C2826;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 2px solid #DAEFB3;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  background-color: #f9fff5;
+}
+
+.form-group input:disabled {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: rgba(220, 20, 60, 0.7);
+  box-shadow: 0 0 8px rgba(220, 20, 60, 0.3);
+  transform: scale(1.02);
+}
+
+.update-form button {
+  all: unset;
+  cursor: pointer;
+  text-align: center;
+  background-color: #DA4167;
+  color: #fff;
+  padding: 12px 0;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.update-form button:hover {
+  background-color: #FF6B81;
+  transform: scale(1.05);
+}
+
+.form-message {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: #DA4167;
+}
+
+@media (max-width: 600px) {
+  .update-page h2 { font-size: 1.5rem; }
+  .update-form { width: 95%; padding: 20px; }
+  .form-group input,
+  .form-group select { font-size: 0.95rem; }
+  .update-form button { font-size: 1rem; padding: 10px 0; }
+}
