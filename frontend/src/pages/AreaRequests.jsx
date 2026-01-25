@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import '../css/MyRequests.css'
+import '../css/AreaRequests.css'
 
-const MyRequests = () => {
+const AreaRequests = () => {
   const [requests, setRequests] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -11,12 +11,12 @@ const MyRequests = () => {
       setLoading(true)
       setError('')
       try {
-        const res = await fetch('http://localhost:3000/api/my-requests', {
+        const res = await fetch('http://localhost:3000/api/my-area-requests', {
           credentials: 'include'
         })
         const data = await res.json()
         if (res.ok) setRequests(data.requests || [])
-        else setError(data.message || 'Failed to fetch requests')
+        else setError(data.message || 'Failed to fetch area requests')
       } catch {
         setError('Server error. Try again later.')
       } finally {
@@ -28,19 +28,21 @@ const MyRequests = () => {
   }, [])
 
   return (
-    <div className="my-requests-page">
-      <h2>My Requests</h2>
+    <div className="area-requests-page">
+      <h2>Requests In Your Area</h2>
 
       {loading && <p className="loading-message">Loading requests...</p>}
       {error && <p className="error-message">{error}</p>}
-      {!loading && !error && requests.length === 0 && <p className="no-requests">No requests found.</p>}
+      {!loading && !error && requests.length === 0 && (
+        <p className="no-requests">No requests found in your area.</p>
+      )}
 
       <div className="requests-list">
         {requests.map((req, index) => (
           <div key={index} className="request-card">
             <div className="request-row">
-              <span className='label'>Request Id:</span>
-              <span className='value'>{req._id}</span>
+              <span className="label">Request Id:</span>
+              <span className="value">{req._id}</span>
             </div>
             <div className="request-row">
               <span className="label">Blood Type:</span>
@@ -56,33 +58,7 @@ const MyRequests = () => {
             </div>
             <div className="request-row">
               <span className="label">Status:</span>
-              <select
-                value={req.status}
-                onChange={async (e) => {
-                  const newStatus = e.target.value
-                  try {
-                    const res = await fetch('http://localhost:3000/api/change-status', {
-                      method: 'PUT',
-                      headers: { 'Content-Type': 'application/json' },
-                      credentials: 'include',
-                      body: JSON.stringify({ reqId: req._id, status: newStatus })
-                    })
-                    if (res.ok) {
-                      setRequests((prev) =>
-                        prev.map((r) => (r._id === req._id ? { ...r, status: newStatus } : r))
-                      )
-                    } else {
-                      alert('Failed to update status')
-                    }
-                  } catch {
-                    alert('Server error while updating status')
-                  }
-                }}
-              >
-                <option value="pending">Pending</option>
-                <option value="fulfilled">Fulfilled</option>
-                <option value="cancelled">Cancelled</option>
-              </select>
+              <span className={`status ${req.status}`}>{req.status}</span>
             </div>
             <div className="request-row">
               <span className="label">Requested On:</span>
@@ -95,4 +71,4 @@ const MyRequests = () => {
   )
 }
 
-export default MyRequests
+export default AreaRequests

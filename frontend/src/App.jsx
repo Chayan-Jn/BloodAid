@@ -8,6 +8,7 @@ import Find from './pages/Find'
 import Request from './pages/Request'
 import Update from './pages/Update'
 import MyRequests from './pages/MyRequests'
+import AreaRequests from './pages/AreaRequests'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path:"/my-requests",
     element:<MyRequests/>
+  },
+  {
+    path:"requests-in-area",
+    element:<AreaRequests/>
   }
 ])
 const App = ()=>{

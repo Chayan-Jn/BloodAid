@@ -132,6 +132,9 @@ const Home = () => {
                 <div className="requests-in-area">
                   <div>Total requests in your area</div>
                   <button>{totalRequests}</button>
+                  <div className="view-btn" onClick={() => navigate('/requests-in-area')}>
+                    View Requests
+                  </div>
                 </div>
               </div>
             </div>

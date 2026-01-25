@@ -140,4 +140,63 @@ export const myRequests = async (req, res) => {
     }
 }
 
+export const changeRequestStatus = async (req,res)=>{
+    try{
+        const {reqId,status} = req.body;
+        const updated = await Request.findByIdAndUpdate(reqId,
+            { status:status },
+            {new:true}
+        )
+        if (!updated) return res.status(404).json({ message: 'Request not found' })
+    
+        return res.json({ message: 'Status updated successfully', request: updated })
+    }
+    catch(err){
+        return res.status(500).json({
+            success:false,
+            message:"Error occured while changing status of the request "
+        })
+    }
+}
+
+export const areaRequests = async (req, res) => {
+    try {
+      const user = await User.findOne({ _id: req.user.userId })
+      if (!user || !user.location || !user.location.state || !user.location.district) {
+        return res.status(400).json({
+          success: false,
+          message: "Fill all fields"
+        })
+      }
+  
+      const { state, district } = user.location
+  
+      const requestsInArea = await Request.find({
+        'location.state': state,
+        'location.district': district
+      })
+  
+      if (!requestsInArea.length) {
+        return res.status(200).json({
+          success: true,
+          message: "No Requests in Area",
+          requests: []
+        })
+      }
+  
+      return res.status(200).json({
+        success: true,
+        message: "Requests fetched successfully",
+        requests: requestsInArea
+      })
+    } catch (err) {
+      console.log("Error in area requests", err)
+      return res.status(500).json({
+        success: false,
+        message: "Internal Server Error.Try again"
+      })
+    }
+  }
+  
+
 export default RequestController;
