@@ -52,7 +52,7 @@ const Register = () => {
                 credentials: "include"
             })
             const data = await res.json();
-            if (data.ok) {
+            if (res.ok) {
                 setMessage("Registered successfully!");
                 console.log("Navigating to /home now...");
                 setTimeout(() => navigate('/home'), 100);
