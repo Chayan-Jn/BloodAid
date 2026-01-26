@@ -15,6 +15,7 @@ export const mailOTP = async (req,res)=>{
         const otp = crypto.randomInt(100000, 1000000);
         console.log("Otp will be sent")
         await client.set(`otp:${email}`,otp.toString(),{EX:300}); // 5 min expiry
+        console.log('otp is set in redis');
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -22,6 +23,7 @@ export const mailOTP = async (req,res)=>{
               pass: process.env.EMAIL_PASS, 
             },
         });
+        console.log('transported created ');
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: email,                     
@@ -35,6 +37,7 @@ export const mailOTP = async (req,res)=>{
         })
     }
     catch(err){
+        console.log(err)
         return res.status(500).json({
             success:false,
             message:"Server Error occured while requesting OTP",
