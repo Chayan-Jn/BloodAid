@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://blood-aid-rw.vercel.app/",
     credentials: true
 }))
 app.use(cookieParser())
