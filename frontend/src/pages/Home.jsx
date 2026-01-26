@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("https://bloodaid-fly0.onrender.com/verify", {
+        const res = await fetch("https://bloodaid-004f.onrender.com/verify", {
           credentials: "include",
         })
         const data = await res.json();
@@ -34,7 +34,7 @@ const Home = () => {
     }
     const countTotalDonors = async () => {
       try {
-        const res = await fetch("https://bloodaid-fly0.onrender.com/api/total-donors", {
+        const res = await fetch("https://bloodaid-004f.onrender.com/api/total-donors", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ const Home = () => {
     }
     const countTotalRequests = async () => {
       try {
-        const res = await fetch("https://bloodaid-fly0.onrender.com/api/total-requests", {
+        const res = await fetch("https://bloodaid-004f.onrender.com/api/total-requests", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ const Home = () => {
 
   const logout = async () => {
     try {
-      const res = await fetch("https://bloodaid-fly0.onrender.com/logout", {
+      const res = await fetch("https://bloodaid-004f.onrender.com/logout", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

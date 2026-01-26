@@ -23,7 +23,7 @@ const Register = () => {
                 setMessage("Invalid OTP");
                 return;
             }
-            const res = await fetch('https://bloodaid-fly0.onrender.com/register', {
+            const res = await fetch('https://bloodaid-004f.onrender.com/register', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -11,7 +11,7 @@ const AreaRequests = () => {
       setLoading(true)
       setError('')
       try {
-        const res = await fetch('https://bloodaid-fly0.onrender.com/api/my-area-requests', {
+        const res = await fetch('https://bloodaid-004f.onrender.com/api/my-area-requests', {
           credentials: 'include'
         })
         const data = await res.json()

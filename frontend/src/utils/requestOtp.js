@@ -9,7 +9,7 @@ export const requestOTP = async ({ email, lastOtpTime, setMessage }) => {
         setMessage("Email can't be empty ")
         return;
     }
-    await fetch('https://bloodaid-fly0.onrender.com/email-otp', {
+    await fetch('https://bloodaid-004f.onrender.com/email-otp', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

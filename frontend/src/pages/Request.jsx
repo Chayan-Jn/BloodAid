@@ -33,7 +33,7 @@ const RequestForm = () => {
     }
 
     try {
-      const res = await fetch('https://bloodaid-fly0.onrender.com/api/make-request', {
+      const res = await fetch('https://bloodaid-004f.onrender.com/api/make-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData),

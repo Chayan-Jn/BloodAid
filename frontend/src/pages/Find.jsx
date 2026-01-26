@@ -32,7 +32,7 @@ const Request = () => {
     }
 
     try {
-      const res = await fetch('https://bloodaid-fly0.onrender.com/api/find-donor', {
+      const res = await fetch('https://bloodaid-004f.onrender.com/api/find-donor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestData),

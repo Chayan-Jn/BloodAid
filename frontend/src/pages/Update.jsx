@@ -56,7 +56,7 @@ const UpdateProfile = () => {
     setMessage('')
 
     try {
-      const res = await fetch('https://bloodaid-fly0.onrender.com/api/user/update', {
+      const res = await fetch('https://bloodaid-004f.onrender.com/api/user/update', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
