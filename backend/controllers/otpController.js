@@ -13,6 +13,7 @@ export const mailOTP = async (req,res)=>{
               })
         }
         const otp = crypto.randomInt(100000, 1000000);
+        console.log("Otp will be sent")
         await client.set(`otp:${email}`,otp.toString(),{EX:300}); // 5 min expiry
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -27,6 +28,7 @@ export const mailOTP = async (req,res)=>{
             subject: 'OTP for BloodAid',  
             text: `Your OTP is ${otp}`     
         })
+        console.log("OTP sent");
         return res.status(200).json({
             success: true,
             message: 'OTP sent successfully'
