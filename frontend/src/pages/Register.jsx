@@ -12,6 +12,17 @@ const Register = () => {
     const lastOtpTime = useRef(0);
     const navigate = useNavigate();
 
+    const isStrongPassword = (password) => {
+        const lengthCheck = password.length >= 8
+        const upperCheck = /[A-Z]/.test(password)
+        const lowerCheck = /[a-z]/.test(password)
+        const numberCheck = /[0-9]/.test(password)
+        const specialCheck = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+      
+        return lengthCheck && upperCheck && lowerCheck && numberCheck && specialCheck
+      }
+      
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
@@ -22,6 +33,9 @@ const Register = () => {
             if (!/^\d{6}$/.test(otp)) {
                 setMessage("Invalid OTP");
                 return;
+            }
+            if (!isStrongPassword(password)) {
+                setMessage("Password must be ≥ 8 chars, include upper, lower, number, special char")
             }
             const res = await fetch('https://bloodaid-004f.onrender.com/register', {
                 method: "POST",
@@ -38,7 +52,7 @@ const Register = () => {
             const data = await res.json();
             if (data.ok) {
                 setMessage("Registered successfully!");
-                navigate('/home')
+                setTimeout(() => navigate('/home'), 100);
             } else {
                 setMessage(data.message || "Registration failed");
             }

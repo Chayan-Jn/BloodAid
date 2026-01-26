@@ -3,7 +3,14 @@ import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import { verifyOTP } from './otpController.js'
 
-
+const isStrongPassword = (password) => {
+    return password.length >= 8 &&
+           /[A-Z]/.test(password) &&
+           /[a-z]/.test(password) &&
+           /[0-9]/.test(password) &&
+           /[!@#$%^&*(),.?":{}|<>]/.test(password)
+}
+  
 export const Register = async (req, res) => {
     try {
         const { email, password, otp } = req.body;
@@ -13,6 +20,9 @@ export const Register = async (req, res) => {
                 message: "User already exists",
                 success: false
             })
+        }
+        if (!isStrongPassword(password)) {
+            return res.status(400).json({ success: false, message: "Password is too weak" })
         }
         const isOTPValid = await verifyOTP({ email, otp });
         if (!isOTPValid) {
