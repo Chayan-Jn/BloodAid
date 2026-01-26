@@ -25,6 +25,7 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setMessage("Registering...")
         try {
             if (!email || !password || !otp) {
                 setMessage("Fill all fields ")
@@ -35,7 +36,8 @@ const Register = () => {
                 return;
             }
             if (!isStrongPassword(password)) {
-                setMessage("Password must be ≥ 8 chars, include upper, lower, number, special char")
+                setMessage("Password must be ≥ 8 chars, include upper, lower, number, special char");
+                return;
             }
             const res = await fetch('https://bloodaid-004f.onrender.com/register', {
                 method: "POST",
@@ -52,6 +54,7 @@ const Register = () => {
             const data = await res.json();
             if (data.ok) {
                 setMessage("Registered successfully!");
+                console.log("Navigating to /home now...");
                 setTimeout(() => navigate('/home'), 100);
             } else {
                 setMessage(data.message || "Registration failed");
@@ -96,7 +99,7 @@ const Register = () => {
                             Request OTP
                         </button>
                     }
-                    <button onClick={handleRegister} className="register-btn">Register</button>
+                    <div onClick={handleRegister} className="register-btn">Register</div>
                 </div>
             </div>
         </div>
