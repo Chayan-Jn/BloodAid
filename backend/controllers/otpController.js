@@ -1,50 +1,47 @@
-import nodemailer from 'nodemailer'
 import crypto from 'crypto'
-import client from '../config/redisClient.js';
-  
-export const mailOTP = async (req,res)=>{
-    try{
+import client from '../config/redisClient.js'
+import fetch from 'node-fetch' 
 
-        const {email} = req.body;
-        if(!email){
-            return res.status(400).json({
-                success: false,
-                message: 'Email is required'
-              })
+export const mailOTP = async (req, res) => {
+  try {
+        const { email } = req.body
+        if (!email) {
+        return res.status(400).json({ success: false, message: 'Email is required' })
         }
-        const otp = crypto.randomInt(100000, 1000000);
-        console.log("Otp will be sent")
-        await client.set(`otp:${email}`,otp.toString(),{EX:300}); // 5 min expiry
-        console.log('otp is set in redis');
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASS, 
-            },
-        });
-        console.log('transported created ');
-        await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            to: email,                     
-            subject: 'OTP for BloodAid',  
-            text: `Your OTP is ${otp}`     
+
+        const otp = crypto.randomInt(100000, 1000000)
+        console.log('Otp will be sent')
+
+        await client.set(`otp:${email}`, otp.toString(), { EX: 300 }) 
+        console.log('otp is set in redis')
+
+        const response = await fetch(process.env.RAILWAY_EMAIL_API_URL + '/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            email,
+            otp,
+            secret: process.env.RAILWAY_EMAIL_API_SECRET, 
+        }),
         })
-        console.log("OTP sent");
-        return res.status(200).json({
-            success: true,
-            message: 'OTP sent successfully'
-        })
-    }
-    catch(err){
+        const result = await response.json()
+        if (!result.success) {
+        console.log('Railway email API failed:', result)
+        return res.status(500).json({ success: false, message: 'Failed to send OTP' })
+        }
+        console.log('OTP sent via Railway email API')
+            return res.status(200).json({ success: true, message: 'OTP sent successfully' })
+    } 
+    catch (err) {
         console.log(err)
         return res.status(500).json({
-            success:false,
-            message:"Server Error occured while requesting OTP",
-            error:err
+        success: false,
+        message: 'Server Error occured while requesting OTP',
+        error: err,
         })
     }
 }
+
 
 export const verifyOTP = async ({email,otp})=>{
     try{
