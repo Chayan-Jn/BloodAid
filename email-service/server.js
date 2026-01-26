@@ -8,22 +8,22 @@ app.use(express.json())
 
 const API_SECRET = process.env.API_SECRET || 'supersecretkey'
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, 
-  },
-})
-
-// Testing transporter on startup
-transporter.verify((err, success) => {
-  if (err) console.error('Mailer error:', err)
-  else console.log('Mailer ready to send messages')
-})
-
 app.post('/send-otp', async (req, res) => {
   try {
+
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS, 
+        },
+      })
+    
+        // Testing transporter on startup
+        transporter.verify((err, success) => {
+          if (err) console.error('Mailer error:', err)
+          else console.log('Mailer ready to send messages')
+        })
         const { email, otp, secret } = req.body
         if (!secret || secret !== API_SECRET) {
             return res.status(403).json({ success: false, message: 'Unauthorized' })

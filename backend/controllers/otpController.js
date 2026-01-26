@@ -26,8 +26,8 @@ export const mailOTP = async (req, res) => {
         })
         const result = await response.json()
         if (!result.success) {
-        console.log('Railway email API failed:', result)
-        return res.status(500).json({ success: false, message: 'Failed to send OTP' })
+            console.log('Railway email API failed:', result)
+            return res.status(500).json({ success: false, message: 'Failed to send OTP' })
         }
         console.log('OTP sent via Railway email API')
             return res.status(200).json({ success: true, message: 'OTP sent successfully' })
