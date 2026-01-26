@@ -11,7 +11,7 @@ const MyRequests = () => {
       setLoading(true)
       setError('')
       try {
-        const res = await fetch('http://localhost:3000/api/my-requests', {
+        const res = await fetch('https://bloodaid-fly0.onrender.com/api/my-requests', {
           credentials: 'include'
         })
         const data = await res.json()
@@ -61,7 +61,7 @@ const MyRequests = () => {
                 onChange={async (e) => {
                   const newStatus = e.target.value
                   try {
-                    const res = await fetch('http://localhost:3000/api/change-status', {
+                    const res = await fetch('https://bloodaid-fly0.onrender.com/api/change-status', {
                       method: 'PUT',
                       headers: { 'Content-Type': 'application/json' },
                       credentials: 'include',

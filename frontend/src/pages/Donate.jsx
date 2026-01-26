@@ -29,7 +29,7 @@ const Donate = () => {
       bloodType: bloodGroup,
       mobile: contact
     }
-    const res = await fetch('http://localhost:3000/api/donate', {
+    const res = await fetch('https://bloodaid-fly0.onrender.com/api/donate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(donorData),

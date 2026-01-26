@@ -1,14 +1,14 @@
 import { useState, useRef } from "react"
 import { requestOTP } from "../utils/requestOtp";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import '../css/Login.css'
 
 const Login = () => {
     const [loginType, setLoginType] = useState('password');
     const [email, setEmail] = useState('');
-    const [otp,setOTP] = useState('');
+    const [otp, setOTP] = useState('');
     const [password, setPassword] = useState('');
-    const [message,setMessage] = useState('')
+    const [message, setMessage] = useState('')
     const lastOtpTime = useRef(0);
     const navigate = useNavigate();
 
@@ -16,51 +16,51 @@ const Login = () => {
     const switchLoginType = async () => {
         if (loginType === "password") {
             setLoginType("otp");
-            await requestOTP({email,lastOtpTime,setMessage});
+            await requestOTP({ email, lastOtpTime, setMessage });
         }
         else if (loginType === "otp") {
             setLoginType("password")
         }
     }
-    const handleLogin = async ()=>{
-        try{
-            if(!email){
+    const handleLogin = async () => {
+        try {
+            if (!email) {
                 setMessage("Fill Email")
                 return;
             }
-            if(loginType==="otp"){
-                if(!otp){
+            if (loginType === "otp") {
+                if (!otp) {
                     setMessage("Enter OTP");
                     return;
-                } 
-                else if(!/^\d{6}$/.test(otp)){
+                }
+                else if (!/^\d{6}$/.test(otp)) {
                     setMessage("Invalid OTP");
                     return;
-                }  
+                }
             }
-            else if(loginType==="password"){
-                if(!password){
+            else if (loginType === "password") {
+                if (!password) {
                     setMessage("Enter Password");
                     return;
-                } 
+                }
             }
-            const res = await fetch('http://localhost:3000/login',{
-                method:"POST",
-                headers:{
-                    'Content-Type':'application/json',
+            const res = await fetch('https://bloodaid-fly0.onrender.com/login', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                body:JSON.stringify({
-                    email:email,
-                    password:password,
-                    loginType:loginType,
-                    otp:otp
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                    loginType: loginType,
+                    otp: otp
                 }),
-                credentials:"include"
+                credentials: "include"
             })
             const data = await res.json();
             setMessage(data.message);
             navigate('/home');
-            
+
         }
         catch (err) {
             console.error(err);
@@ -81,7 +81,7 @@ const Login = () => {
                         <div className="input-box">
                             <label htmlFor="password">Password</label>
                             <input type="password" id="password" placeholder="Enter Password" value={password}
-                             onChange={e => setPassword(e.target.value)} />
+                                onChange={e => setPassword(e.target.value)} />
                         </div>
                         <div className="login-pswd">
                             <div className="login-type otp-btn" onClick={switchLoginType}>{`Login using OTP?`}</div>
@@ -93,11 +93,11 @@ const Login = () => {
                     <>
                         <div className="input-box">
                             <label htmlFor="otp">OTP</label>
-                            <input type="text" id="otp" maxLength={6} placeholder="Enter OTP sent to your Email" onChange={e=>setOTP(e.target.value)} value={otp}/>
+                            <input type="text" id="otp" maxLength={6} placeholder="Enter OTP sent to your Email" onChange={e => setOTP(e.target.value)} value={otp} />
                         </div>
                         <div className="login-otp">
                             <div className="login-type l-button" onClick={switchLoginType}>{`Login using Password?`}</div>
-                            <div className="resend-otp l-button" onClick={async ()=>{await requestOTP({email,lastOtpTime,setMessage})}}>Resend OTP</div>
+                            <div className="resend-otp l-button" onClick={async () => { await requestOTP({ email, lastOtpTime, setMessage }) }}>Resend OTP</div>
                         </div>
                         <div className="login-btn-otp" onClick={handleLogin}>Login</div>
                     </>

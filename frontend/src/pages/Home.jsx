@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch("http://localhost:3000/verify", {
+        const res = await fetch("https://bloodaid-fly0.onrender.com/verify", {
           credentials: "include",
         })
         const data = await res.json();
@@ -34,7 +34,7 @@ const Home = () => {
     }
     const countTotalDonors = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/total-donors", {
+        const res = await fetch("https://bloodaid-fly0.onrender.com/api/total-donors", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ const Home = () => {
     }
     const countTotalRequests = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/total-requests", {
+        const res = await fetch("https://bloodaid-fly0.onrender.com/api/total-requests", {
           method: "GET",
           headers: {
             'Content-Type': 'application/json'
@@ -77,23 +77,23 @@ const Home = () => {
   }, []);
 
   const logout = async () => {
-    try{
-      const res = await fetch("http://localhost:3000/logout",{
-        method:"POST",
-        headers:{
-          'Content-Type':'application/json'
+    try {
+      const res = await fetch("https://bloodaid-fly0.onrender.com/logout", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
         },
-        credentials:"include"
+        credentials: "include"
       })
-      if (res.ok){
-        sessionStorage.removeItem('user'); 
+      if (res.ok) {
+        sessionStorage.removeItem('user');
         navigate('/');
-      } 
+      }
       else {
         console.error("Logout failed:", data.message);
       }
     }
-    catch(err){
+    catch (err) {
       console.error("Logout failed", err)
     }
   }
@@ -112,7 +112,7 @@ const Home = () => {
               </div>
             </nav>
             {/*Profile popup */}
-            {showProfile && <ProfilePopup user={user} onClose={() => setShowProfile(false)} onLogout={()=>logout()} />}
+            {showProfile && <ProfilePopup user={user} onClose={() => setShowProfile(false)} onLogout={() => logout()} />}
             <div className="main">
               <div className="row1">
                 <div className="donate">
