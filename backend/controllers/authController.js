@@ -24,6 +24,18 @@ export const Register = async (req, res) => {
         if (!isStrongPassword(password)) {
             return res.status(400).json({ success: false, message: "Password is too weak" })
         }
+        if (email.length > 254) {
+            return res.status(400).json({ success: false, message: "Email too long" })
+        }
+          
+        if (password.length > 128) {
+            return res.status(400).json({ success: false, message: "Password too long" })
+        }
+          
+        if (otp.length !== 6) {
+        return res.status(400).json({ success: false, message: "Invalid OTP length" })
+        }
+          
         const isOTPValid = await verifyOTP({ email, otp });
         if (!isOTPValid) {
             return res.status(400).json({
