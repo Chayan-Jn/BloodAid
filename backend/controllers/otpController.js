@@ -1,6 +1,14 @@
 import crypto from 'crypto'
 import client from '../config/redisClient.js'
-import nodemailer from 'nodemailer'
+import { google } from 'googleapis'
+
+const oAuth2Client = new google.auth.OAuth2(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  process.env.REDIRECT_URI
+)
+
+oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN })
 
 export const mailOTP = async (req, res) => {
   try {
@@ -15,24 +23,28 @@ export const mailOTP = async (req, res) => {
     await client.set(`otp:${email}`, otp.toString(), { EX: 300 })
     console.log('otp is set in redis')
 
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER, 
-        pass: process.env.EMAIL_PASS 
-      }
+    const gmail = google.gmail({ version: 'v1', auth: oAuth2Client })
+
+    const emailContent = [
+      `From: "bloodAid" <${process.env.EMAIL_USER}>`,
+      `To: ${email}`,
+      'Subject: Your OTP Code',
+      '',
+      `Your OTP code for bloodAid is ${otp}. It will expire in 5 minutes.`
+    ].join('\n')
+
+    const encodedMessage = Buffer.from(emailContent)
+      .toString('base64')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '')
+
+    await gmail.users.messages.send({
+      userId: 'me',
+      requestBody: { raw: encodedMessage }
     })
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Your OTP Code',
-      text: `Your OTP code for bloodAid is ${otp}. It will expire in 5 minutes.`,
-    }
-
-    await transporter.sendMail(mailOptions)
-    console.log('OTP sent via Gmail SMTP')
-
+    console.log('OTP sent via Gmail API')
     return res.status(200).json({ success: true, message: 'OTP sent successfully' })
   } 
   catch (err) {
