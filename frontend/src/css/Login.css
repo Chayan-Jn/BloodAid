@@ -179,3 +179,103 @@
     background-color: rgb(90, 4, 90);
     color: honeydew;
 }
+
+
+@media (max-width: 768px) {
+
+    .login-page {
+        padding: 20px;
+    }
+
+    .login-heading {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .login-inputs {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .input-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        height: auto;
+        font-size: 0.9rem;
+    }
+
+    .input-box > label {
+        width: 100%;
+        margin: 0;
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+
+    .input-box > input {
+        width: 100%;
+        height: 42px;
+        margin: 0;
+        font-size: 0.95rem;
+        border: none;
+        outline: none;
+    }
+
+    .l-msg {
+        width: 100%;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+
+    /* login type button */
+    .login-type {
+        width: 100%;
+        height: 40px;
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+
+    /* OTP section */
+    .login-otp {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .otp-btn {
+        width: 100%;
+        height: 42px;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .login-btn-otp {
+        width: 100%;
+        height: 42px;
+        font-size: 0.95rem;
+    }
+
+    /* password section */
+    .login-pswd {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .login-btn-pswd {
+        width: 100%;
+        height: 42px;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    .l-button {
+        width: 100%;
+        height: 42px;
+        font-size: 0.95rem;
+    }
+}

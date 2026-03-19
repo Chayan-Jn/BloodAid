@@ -79,7 +79,7 @@ const Register = () => {
             <div className="register-inputs">
                 <div className="input-box">
                     <label htmlFor="email">Email ID</label>
-                    <input type="tel" id="email" onChange={e => setEmail(e.target.value)} value={email} />
+                    <input type="email" id="email" onChange={e => setEmail(e.target.value)} value={email} />
                 </div>
                 <div className="input-box">
                     <label htmlFor="password">Create Password</label>

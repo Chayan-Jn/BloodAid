@@ -144,3 +144,42 @@
 }
 
 .icon-small { font-size: 0.9rem; }
+
+
+/* ─── Tablet (≤ 768px) ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .profile-popup-card {
+    width: 290px;
+    top: 60px;
+    right: 10px;
+    padding: 16px;
+  }
+}
+
+/* ─── Mobile (≤ 480px) ────────────────────────────────────── */
+@media (max-width: 480px) {
+  .profile-popup-card {
+    width: calc(100vw - 24px);
+    top: 56px;
+    right: 12px;
+    left: 12px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .popup-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .info-row {
+    font-size: 0.9rem;
+  }
+
+  .request-btn,
+  .update-btn,
+  .your-requests-btn,
+  .logout-btn {
+    font-size: 0.95rem;
+    padding: 9px 0;
+  }
+}

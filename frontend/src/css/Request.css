@@ -91,3 +91,49 @@
     text-align: center;
   }
   
+
+  /* ─── Tablet (≤ 768px) ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .request-form-heading {
+    font-size: 1.6rem;
+    padding: 12px 20px;
+    margin-bottom: 28px;
+  }
+
+  form {
+    width: 95%;
+    padding: 24px;
+  }
+}
+
+/* ─── Mobile (≤ 480px) ────────────────────────────────────── */
+@media (max-width: 480px) {
+  .request-form-page {
+    padding: 4vh 4vw;
+  }
+
+  .request-form-heading {
+    font-size: 1.3rem;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    border-radius: 18px;
+  }
+
+  form {
+    width: 100%;
+    padding: 18px;
+    border-radius: 18px;
+    gap: 16px;
+  }
+
+  .request-form-item select,
+  .request-form-item input {
+    font-size: 0.95rem;
+    padding: 9px;
+  }
+
+  .request-form-submit-btn {
+    font-size: 1rem;
+    padding: 11px;
+  }
+}
